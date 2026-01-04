@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { GraduationCap, Code, Brain, Lightbulb } from "lucide-react";
+import { GraduationCap, Code, Brain, Lightbulb, MapPin, Mail } from "lucide-react";
 
 const timelineItems = [
   {
@@ -37,15 +37,52 @@ const About = () => {
 
   return (
     <section id="about" className="py-20 px-4">
-      <div className="max-w-4xl mx-auto">
+      <div className="max-w-5xl mx-auto">
         <h2 className="text-3xl md:text-4xl font-bold text-center mb-4">
-          About <span className="text-gradient">Me</span>
+          A bit about <span className="text-gradient">me</span>
         </h2>
-        <p className="text-muted-foreground text-center mb-16 max-w-2xl mx-auto">
-          A fundamentals-first approach to AI, emphasizing understanding over shortcuts
-        </p>
+        
+        {/* Personal description - clear, technical, honest */}
+        <div className="max-w-3xl mx-auto mb-16">
+          <p className="text-lg text-muted-foreground text-center leading-relaxed mb-6">
+            I'm an AI/ML engineer with a computer science background, currently focused on 
+            building and understanding machine learning systems. My approach prioritizes 
+            fundamentals over shortcuts — understanding why models work, not just how to 
+            make them run.
+          </p>
+          <p className="text-lg text-muted-foreground text-center leading-relaxed mb-6">
+            After completing my CDAC PGDAI specialization, I've been working on computer 
+            vision projects including object detection and image segmentation. I spend 
+            significant time on error analysis and model evaluation, believing that 
+            understanding failures is as important as celebrating successes.
+          </p>
+          <p className="text-lg text-muted-foreground text-center leading-relaxed">
+            I learn by building. Each project is an opportunity to deepen my understanding 
+            of the underlying mathematics, experiment with different approaches, and develop 
+            intuition for what works in practice.
+          </p>
+          
+          {/* Location and contact */}
+          <div className="flex items-center justify-center gap-6 mt-8 text-muted-foreground">
+            <span className="flex items-center gap-2">
+              <MapPin className="w-4 h-4 text-primary" />
+              Mumbai, India
+            </span>
+            <a 
+              href="mailto:pranav@example.com" 
+              className="flex items-center gap-2 hover:text-primary transition-colors"
+            >
+              <Mail className="w-4 h-4" />
+              pranav@example.com
+            </a>
+          </div>
+        </div>
 
         {/* Timeline */}
+        <h3 className="text-xl font-semibold text-center mb-8 text-muted-foreground">
+          My Journey
+        </h3>
+        
         <div className="relative">
           {/* Connecting line */}
           <div className="absolute left-8 md:left-1/2 top-0 bottom-0 w-px bg-gradient-to-b from-primary via-secondary to-accent opacity-30" />
