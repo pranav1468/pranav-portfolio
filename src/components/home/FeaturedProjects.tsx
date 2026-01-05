@@ -2,6 +2,7 @@ import { Link } from "react-router-dom";
 import { ArrowRight, Github, ExternalLink } from "lucide-react";
 import { Badge } from "@/components/ui/badge";
 import { projects } from "@/data/projects";
+import type { Project } from "@/data/projects";
 
 const FeaturedProjects = () => {
   // Show only first 2 projects as featured
@@ -18,11 +19,10 @@ const FeaturedProjects = () => {
         </p>
 
         <div className="grid gap-8 md:grid-cols-2">
-          {featuredProjects.map((project) => (
-            <Link
+          {featuredProjects.map((project: Project) => (
+            <div
               key={project.id}
-              to={`/projects/${project.id}`}
-              className="group p-6 rounded-lg border border-border bg-card/30 hover:border-primary/50 hover:bg-card/50 transition-all duration-300"
+              className="group p-6 rounded-lg border border-border bg-card/30 hover:border-primary/50 hover:bg-card/50 hover-glow-primary transition-all duration-300"
             >
               {/* Title */}
               <h3 className="text-xl font-semibold mb-3 group-hover:text-primary transition-colors">
@@ -48,12 +48,39 @@ const FeaturedProjects = () => {
                 {project.results.metrics}
               </p>
 
-              {/* View details */}
-              <div className="flex items-center gap-1 text-sm text-primary">
-                View details
-                <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
+              {/* Actions: GitHub, Live Demo, View Details */}
+              <div className="flex items-center gap-4">
+                <a
+                  href={project.githubUrl}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  onClick={(e) => e.stopPropagation()}
+                  className="text-muted-foreground hover:text-foreground hover-glow-primary transition-all duration-200"
+                  aria-label="View on GitHub"
+                >
+                  <Github className="w-5 h-5" />
+                </a>
+                {project.liveUrl && (
+                  <a
+                    href={project.liveUrl}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    onClick={(e) => e.stopPropagation()}
+                    className="text-muted-foreground hover:text-foreground hover-glow-primary transition-all duration-200"
+                    aria-label="View Live Demo"
+                  >
+                    <ExternalLink className="w-5 h-5" />
+                  </a>
+                )}
+                <Link
+                  to={`/projects/${project.id}`}
+                  className="inline-flex items-center gap-1 text-sm text-primary hover:underline"
+                >
+                  View details
+                  <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
+                </Link>
               </div>
-            </Link>
+            </div>
           ))}
         </div>
 

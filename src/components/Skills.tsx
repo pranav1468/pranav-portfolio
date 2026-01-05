@@ -92,8 +92,8 @@ const Skills = () => {
           Tools and technologies I use to build intelligent systems
         </p>
 
-        {/* Two cards per row with generous spacing */}
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-10">
+        {/* Two cards per row */}
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
           {skillCategories.map((category) => {
             const Icon = category.icon;
             const colors = colorClasses[category.color as keyof typeof colorClasses];
@@ -102,21 +102,21 @@ const Skills = () => {
             return (
               <div
                 key={category.title}
-                className={`p-8 rounded-2xl border bg-card/50 transition-all duration-300 ${colors.border} ${
+                className={`p-5 rounded-xl border bg-card/50 transition-all duration-300 ${colors.border} ${
                   isHovered ? `${colors.glow} -translate-y-1` : ""
                 }`}
                 onMouseEnter={() => setHoveredCard(category.title)}
                 onMouseLeave={() => setHoveredCard(null)}
               >
-                <div className="flex items-center gap-4 mb-6">
-                  <div className={`p-3 rounded-xl ${colors.bg} transition-transform duration-200 ${isHovered ? "scale-110" : ""}`}>
-                    <Icon className={`w-6 h-6 ${colors.text}`} />
+                <div className="flex items-center gap-3 mb-4">
+                  <div className={`p-2.5 rounded-lg ${colors.bg} transition-transform duration-200 ${isHovered ? "scale-110" : ""}`}>
+                    <Icon className={`w-5 h-5 ${colors.text}`} />
                   </div>
-                  <h3 className="text-xl font-semibold">{category.title}</h3>
+                  <h3 className="text-lg font-semibold">{category.title}</h3>
                 </div>
 
-                {/* Skill pills with breathing room */}
-                <div className="flex flex-wrap gap-3">
+                {/* Skill pills - compact */}
+                <div className="flex flex-wrap gap-2">
                   {category.skills.map((skill) => (
                     <div
                       key={skill.name}
@@ -125,7 +125,7 @@ const Skills = () => {
                       onMouseLeave={() => setHoveredSkill(null)}
                     >
                       <span 
-                        className={`inline-block px-4 py-2 rounded-lg bg-muted/50 border border-border/50 text-sm font-medium cursor-pointer transition-all duration-200 ${colors.pill}`}
+                        className={`inline-block px-3 py-1.5 rounded-md bg-muted/50 border border-border/50 text-sm font-medium cursor-pointer transition-all duration-200 ${colors.pill}`}
                       >
                         {skill.name}
                       </span>

@@ -5,6 +5,7 @@ export interface Project {
   techStack: string[];
   image: string;
   githubUrl: string;
+  liveUrl?: string;
   hasPipelineOverview: boolean;
   problem: string;
   approach: string;

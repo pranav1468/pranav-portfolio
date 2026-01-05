@@ -1,5 +1,5 @@
 import { Link } from "react-router-dom";
-import { ArrowRight, Github } from "lucide-react";
+import { ArrowRight, Github, ExternalLink } from "lucide-react";
 import { Badge } from "@/components/ui/badge";
 import { projects } from "@/data/projects";
 import SEO from "@/components/layout/SEO";
@@ -61,17 +61,28 @@ const Projects = () => {
                       </p>
                     </div>
 
-                    {/* Actions */}
-                    <div className="flex items-center gap-4">
+                    {/* Actions - GitHub, Live Demo, View Details */}
+                    <div className="flex items-center gap-4 mt-4 md:mt-0">
                       <a
                         href={project.githubUrl}
                         target="_blank"
                         rel="noopener noreferrer"
-                        className="text-muted-foreground hover:text-foreground transition-colors"
+                        className="text-muted-foreground hover:text-foreground hover-glow-primary transition-all duration-200"
                         aria-label="View on GitHub"
                       >
                         <Github className="w-5 h-5" />
                       </a>
+                      {project.liveUrl && (
+                        <a
+                          href={project.liveUrl}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          className="text-muted-foreground hover:text-foreground hover-glow-primary transition-all duration-200"
+                          aria-label="View Live Demo"
+                        >
+                          <ExternalLink className="w-5 h-5" />
+                        </a>
+                      )}
                       <Link
                         to={`/projects/${project.id}`}
                         className="inline-flex items-center gap-1 text-primary hover:underline"
