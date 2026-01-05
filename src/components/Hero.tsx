@@ -5,6 +5,24 @@ import { ArrowDown, FileText, MapPin, Github, Linkedin, Mail } from "lucide-reac
 
 const dynamicTexts = ["Machine Learning", "Deep Learning", "Computer Vision", "NLP"];
 
+const socialLinks = [
+  {
+    icon: Github,
+    label: "GitHub",
+    href: "https://github.com/pranavbaghare",
+  },
+  {
+    icon: Linkedin,
+    label: "LinkedIn",
+    href: "https://linkedin.com/in/pranavbaghare",
+  },
+  {
+    icon: Mail,
+    label: "Email",
+    href: "mailto:pranav@example.com",
+  },
+];
+
 const Hero = () => {
   const [currentTextIndex, setCurrentTextIndex] = useState(0);
   const [isVisible, setIsVisible] = useState(false);
@@ -23,7 +41,7 @@ const Hero = () => {
   };
 
   const scrollToJourney = () => {
-    document.getElementById("journey")?.scrollIntoView({ behavior: "smooth" });
+    document.getElementById("about")?.scrollIntoView({ behavior: "smooth" });
   };
 
   return (
@@ -36,7 +54,7 @@ const Hero = () => {
 
       <div className="relative z-10 px-4 max-w-6xl mx-auto w-full">
         {/* PRIMARY ZONE - Above the fold */}
-        <div className={`flex flex-col lg:flex-row items-center gap-12 transition-all duration-1000 ${isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-10"}`}>
+        <div className={`flex flex-col lg:flex-row items-center gap-12 lg:gap-16 transition-all duration-1000 ${isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-10"}`}>
           
           {/* Text content */}
           <div className="flex-1 text-center lg:text-left">
@@ -46,31 +64,31 @@ const Hero = () => {
             </h1>
 
             {/* Value proposition */}
-            <p className="text-lg md:text-xl text-muted-foreground mb-8 max-w-2xl">
+            <p className="text-lg md:text-xl text-muted-foreground mb-10 max-w-2xl">
               AI/ML Engineer focused on fundamentals, experimentation, and real-world systems
             </p>
 
             {/* Dynamic headline */}
-            <h2 className="text-2xl md:text-4xl font-semibold mb-12">
+            <h2 className="text-2xl md:text-4xl font-semibold mb-14">
               Building Intelligent Systems with{" "}
-              <span className="text-primary relative">
+              <span className="text-primary relative inline-block">
                 {dynamicTexts[currentTextIndex]}
                 <span className="absolute -bottom-1 left-0 w-full h-0.5 bg-primary/50" />
               </span>
             </h2>
 
-            {/* Primary CTAs - Only two */}
-            <div className="flex flex-wrap items-center justify-center lg:justify-start gap-4">
+            {/* Primary CTAs - Only two with hover elevation */}
+            <div className="flex flex-wrap items-center justify-center lg:justify-start gap-5">
               <Button 
                 onClick={handleViewProjects}
-                className="bg-primary text-primary-foreground hover:bg-primary/90 px-8 py-6 text-lg hover-glow-primary transition-shadow"
+                className="bg-primary text-primary-foreground hover:bg-primary/90 px-8 py-6 text-lg hover-glow-primary hover:-translate-y-0.5 transition-all duration-200"
               >
                 View Projects
               </Button>
               
               <Button 
                 variant="outline" 
-                className="border-primary/50 text-foreground hover:bg-primary/10 px-8 py-6 text-lg"
+                className="border-primary/50 text-foreground hover:bg-primary/10 hover:border-primary px-8 py-6 text-lg hover:-translate-y-0.5 transition-all duration-200"
                 asChild
               >
                 <a href="/resume.pdf" download>
@@ -99,57 +117,48 @@ const Hero = () => {
         </div>
 
         {/* SECONDARY ZONE - Below the fold */}
-        <div className={`mt-20 md:mt-28 transition-all duration-1000 delay-300 ${isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-10"}`}>
+        <div className={`mt-24 md:mt-32 transition-all duration-1000 delay-300 ${isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-10"}`}>
+          
+          {/* Social links - Compact icon cards with hover effects */}
+          <div className="flex items-center justify-center gap-4 md:gap-6 mb-12">
+            {socialLinks.map((link) => {
+              const Icon = link.icon;
+              return (
+                <a
+                  key={link.label}
+                  href={link.href}
+                  target={link.href.startsWith("mailto") ? undefined : "_blank"}
+                  rel="noopener noreferrer"
+                  className="group relative flex items-center gap-2 p-4 rounded-xl border border-border/50 bg-card/50 hover:border-primary/50 hover:bg-primary/5 hover-glow-primary hover:scale-105 transition-all duration-200 focus:outline-none focus:ring-2 focus:ring-primary/50 focus:ring-offset-2 focus:ring-offset-background"
+                  aria-label={link.label}
+                >
+                  <Icon className="w-5 h-5 text-muted-foreground group-hover:text-primary transition-colors duration-200" />
+                  <span className="text-sm font-medium text-muted-foreground group-hover:text-foreground transition-colors duration-200">
+                    {link.label}
+                  </span>
+                </a>
+              );
+            })}
+          </div>
+
+          {/* My Journey anchor */}
+          <div className="flex justify-center mb-12">
+            <Button 
+              variant="ghost" 
+              onClick={scrollToJourney}
+              className="text-muted-foreground hover:text-foreground hover:bg-muted/50 transition-colors duration-200"
+            >
+              My Journey
+              <ArrowDown className="ml-2 h-5 w-5" />
+            </Button>
+          </div>
+
           {/* Location & Availability */}
-          <div className="flex items-center justify-center gap-2 text-muted-foreground mb-10">
+          <div className="flex items-center justify-center gap-2 text-muted-foreground">
             <MapPin className="w-4 h-4" />
             <span>India</span>
             <span className="mx-2">•</span>
             <span className="text-primary">Open to AI/ML internships & entry-level roles</span>
-          </div>
-
-          {/* Social links - Compact icon cards with hover glow */}
-          <div className="flex items-center justify-center gap-6 mb-10">
-            <a
-              href="https://github.com/pranavbaghare"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="group flex items-center gap-2 p-3 rounded-lg border border-border/50 bg-card/50 hover:border-primary/50 hover:bg-primary/5 hover-glow-primary transition-all duration-300"
-              aria-label="GitHub"
-            >
-              <Github className="w-5 h-5 text-muted-foreground group-hover:text-primary transition-colors" />
-              <span className="text-sm text-muted-foreground group-hover:text-foreground transition-colors">GitHub</span>
-            </a>
-            <a
-              href="https://linkedin.com/in/pranavbaghare"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="group flex items-center gap-2 p-3 rounded-lg border border-border/50 bg-card/50 hover:border-primary/50 hover:bg-primary/5 hover-glow-primary transition-all duration-300"
-              aria-label="LinkedIn"
-            >
-              <Linkedin className="w-5 h-5 text-muted-foreground group-hover:text-primary transition-colors" />
-              <span className="text-sm text-muted-foreground group-hover:text-foreground transition-colors">LinkedIn</span>
-            </a>
-            <a
-              href="mailto:pranav@example.com"
-              className="group flex items-center gap-2 p-3 rounded-lg border border-border/50 bg-card/50 hover:border-primary/50 hover:bg-primary/5 hover-glow-primary transition-all duration-300"
-              aria-label="Email"
-            >
-              <Mail className="w-5 h-5 text-muted-foreground group-hover:text-primary transition-colors" />
-              <span className="text-sm text-muted-foreground group-hover:text-foreground transition-colors">Email</span>
-            </a>
-          </div>
-
-          {/* My AI Journey anchor */}
-          <div className="flex justify-center">
-            <Button 
-              variant="ghost" 
-              onClick={scrollToJourney}
-              className="text-muted-foreground hover:text-foreground"
-            >
-              My AI Journey
-              <ArrowDown className="ml-2 h-5 w-5" />
-            </Button>
           </div>
         </div>
       </div>

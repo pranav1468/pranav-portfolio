@@ -34,60 +34,73 @@ const timelineItems = [
 
 const About = () => {
   const [hoveredIndex, setHoveredIndex] = useState<number | null>(null);
+  const [isCardHovered, setIsCardHovered] = useState(false);
 
   return (
-    <section id="about" className="py-20 px-4">
+    <section id="about" className="py-24 md:py-32 px-4">
       <div className="max-w-5xl mx-auto">
-        <h2 className="text-3xl md:text-4xl font-bold text-center mb-4">
+        <h2 className="text-3xl md:text-4xl font-bold text-center mb-12">
           A bit about <span className="text-gradient">me</span>
         </h2>
         
-        {/* Personal description - clear, technical, honest */}
-        <div className="max-w-3xl mx-auto mb-16">
-          <p className="text-lg text-muted-foreground text-center leading-relaxed mb-6">
-            I'm an AI/ML engineer with a computer science background, currently focused on 
-            building and understanding machine learning systems. My approach prioritizes 
-            fundamentals over shortcuts — understanding why models work, not just how to 
-            make them run.
-          </p>
-          <p className="text-lg text-muted-foreground text-center leading-relaxed mb-6">
-            After completing my CDAC PGDAI specialization, I've been working on computer 
-            vision projects including object detection and image segmentation. I spend 
-            significant time on error analysis and model evaluation, believing that 
-            understanding failures is as important as celebrating successes.
-          </p>
-          <p className="text-lg text-muted-foreground text-center leading-relaxed">
-            I learn by building. Each project is an opportunity to deepen my understanding 
-            of the underlying mathematics, experiment with different approaches, and develop 
-            intuition for what works in practice.
-          </p>
+        {/* About Card Box - Interactive with hover effects */}
+        <div 
+          className={`max-w-3xl mx-auto mb-20 p-8 md:p-10 rounded-2xl border border-border/50 bg-card/50 backdrop-blur-sm transition-all duration-300 ${
+            isCardHovered ? "hover-glow-primary border-primary/30 -translate-y-1" : ""
+          }`}
+          onMouseEnter={() => setIsCardHovered(true)}
+          onMouseLeave={() => setIsCardHovered(false)}
+        >
+          <div className="space-y-6 text-lg text-muted-foreground leading-relaxed">
+            <p>
+              I'm an AI/ML engineer with a computer science background, currently focused on 
+              building and understanding machine learning systems. My approach prioritizes 
+              fundamentals over shortcuts — understanding why models work, not just how to 
+              make them run.
+            </p>
+            <p>
+              After completing my CDAC PGDAI specialization, I've been working on computer 
+              vision projects including object detection and image segmentation. I spend 
+              significant time on error analysis and model evaluation, believing that 
+              understanding failures is as important as celebrating successes.
+            </p>
+            <p>
+              I learn by building. Each project is an opportunity to deepen my understanding 
+              of the underlying mathematics, experiment with different approaches, and develop 
+              intuition for what works in practice.
+            </p>
+          </div>
           
-          {/* Location and contact */}
-          <div className="flex items-center justify-center gap-6 mt-8 text-muted-foreground">
-            <span className="flex items-center gap-2">
+          {/* Location and contact as pill elements */}
+          <div className="flex flex-wrap items-center justify-center gap-4 mt-8">
+            <span className="flex items-center gap-2 px-4 py-2 rounded-full bg-muted/50 border border-border/50 text-muted-foreground hover:bg-muted hover:border-border transition-all duration-200 cursor-default">
               <MapPin className="w-4 h-4 text-primary" />
               Mumbai, India
             </span>
             <a 
               href="mailto:pranav@example.com" 
-              className="flex items-center gap-2 hover:text-primary transition-colors"
+              className="flex items-center gap-2 px-4 py-2 rounded-full bg-muted/50 border border-border/50 text-muted-foreground hover:bg-primary/10 hover:border-primary/50 hover:text-foreground transition-all duration-200"
             >
-              <Mail className="w-4 h-4" />
+              <Mail className="w-4 h-4 text-primary" />
               pranav@example.com
             </a>
           </div>
         </div>
 
-        {/* Timeline */}
-        <h3 className="text-xl font-semibold text-center mb-8 text-muted-foreground">
+        {/* My Journey Timeline */}
+        <h3 className="text-2xl font-semibold text-center mb-12 text-foreground">
           My Journey
         </h3>
         
         <div className="relative">
           {/* Connecting line */}
-          <div className="absolute left-8 md:left-1/2 top-0 bottom-0 w-px bg-gradient-to-b from-primary via-secondary to-accent opacity-30" />
+          <div 
+            className={`absolute left-8 md:left-1/2 top-0 bottom-0 w-px bg-gradient-to-b from-primary via-secondary to-accent transition-opacity duration-300 ${
+              hoveredIndex !== null ? "opacity-50" : "opacity-30"
+            }`} 
+          />
 
-          <div className="space-y-8">
+          <div className="space-y-10">
             {timelineItems.map((item, index) => {
               const Icon = item.icon;
               const isEven = index % 2 === 0;
@@ -102,11 +115,17 @@ const About = () => {
                 >
                   {/* Content card */}
                   <div className={`flex-1 ml-20 md:ml-0 ${isEven ? "md:text-right md:pr-12" : "md:text-left md:pl-12"}`}>
-                    <div className={`p-6 rounded-lg border border-border bg-card/50 transition-all duration-300 ${isHovered ? "border-primary/50 glow-primary" : ""}`}>
+                    <div 
+                      className={`p-6 rounded-xl border bg-card/50 transition-all duration-300 ${
+                        isHovered 
+                          ? "border-primary/50 hover-glow-primary -translate-y-1" 
+                          : "border-border/50"
+                      }`}
+                    >
                       <span className="text-xs font-medium text-primary uppercase tracking-wider">
                         {item.period}
                       </span>
-                      <h3 className="text-xl font-semibold mt-2 mb-2">{item.title}</h3>
+                      <h4 className="text-xl font-semibold mt-2 mb-2">{item.title}</h4>
                       <p className="text-muted-foreground text-sm">{item.description}</p>
                       
                       {/* Hover detail */}
@@ -117,8 +136,12 @@ const About = () => {
                   </div>
 
                   {/* Icon node */}
-                  <div className={`absolute left-4 md:left-1/2 md:-translate-x-1/2 w-10 h-10 rounded-full bg-background border-2 flex items-center justify-center transition-all duration-300 ${isHovered ? "border-primary scale-110" : "border-muted"}`}>
-                    <Icon className={`w-5 h-5 transition-colors ${isHovered ? "text-primary" : "text-muted-foreground"}`} />
+                  <div 
+                    className={`absolute left-4 md:left-1/2 md:-translate-x-1/2 w-10 h-10 rounded-full bg-background border-2 flex items-center justify-center transition-all duration-300 ${
+                      isHovered ? "border-primary scale-110 shadow-lg shadow-primary/20" : "border-muted"
+                    }`}
+                  >
+                    <Icon className={`w-5 h-5 transition-colors duration-200 ${isHovered ? "text-primary" : "text-muted-foreground"}`} />
                   </div>
 
                   {/* Spacer for alternating layout */}
