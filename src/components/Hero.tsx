@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import { Button } from "@/components/ui/button";
-import { ArrowDown, FileText, MapPin, Github, Linkedin, Mail } from "lucide-react";
+import { ArrowDown, FileText, MapPin, Github, Linkedin, Mail, Sparkles } from "lucide-react";
 
 const dynamicTexts = ["Machine Learning", "Deep Learning", "Computer Vision", "NLP"];
 
@@ -21,6 +21,12 @@ const socialLinks = [
     label: "Email",
     href: "mailto:pranav@example.com",
   },
+];
+
+const exploringItems = [
+  "EfficientNetV2",
+  "Satellite time-series",
+  "Error analysis",
 ];
 
 const Hero = () => {
@@ -45,39 +51,44 @@ const Hero = () => {
   };
 
   return (
-    <section id="home" className="relative min-h-screen flex flex-col justify-center overflow-hidden pt-16">
+    <section id="home" className="relative min-h-screen flex flex-col justify-between overflow-hidden pt-20 pb-12">
       {/* Background grid pattern */}
       <div className="absolute inset-0 grid-pattern opacity-50" />
 
       {/* Gradient overlay */}
       <div className="absolute inset-0 bg-gradient-to-b from-transparent via-background/50 to-background" />
 
-      <div className="relative z-10 px-4 max-w-6xl mx-auto w-full">
-        {/* PRIMARY ZONE - Above the fold */}
-        <div className={`flex flex-col lg:flex-row items-center gap-12 lg:gap-16 transition-all duration-1000 ${isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-10"}`}>
+      <div className="relative z-10 px-4 max-w-6xl mx-auto w-full flex flex-col flex-1">
+        
+        {/* LAYER 1: Primary Identity Section */}
+        <div className={`flex flex-col lg:flex-row items-center gap-12 lg:gap-20 pt-8 md:pt-16 transition-all duration-1000 ${isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-10"}`}>
           
-          {/* Text content */}
+          {/* Left: Name, Role Badge, Value Description */}
           <div className="flex-1 text-center lg:text-left">
-            {/* Name */}
-            <h1 className="text-5xl md:text-7xl font-bold mb-6 tracking-tight">
+            {/* Name - Largest text */}
+            <h1 className="text-5xl md:text-7xl lg:text-8xl font-bold mb-6 tracking-tight">
               <span className="text-gradient">Pranav Baghare</span>
             </h1>
 
-            {/* Value proposition */}
-            <p className="text-lg md:text-xl text-muted-foreground mb-10 max-w-2xl">
-              AI/ML Engineer focused on fundamentals, experimentation, and real-world systems
+            {/* Role as pill/badge */}
+            <div className="flex items-center justify-center lg:justify-start gap-3 mb-6">
+              <span className="px-4 py-2 text-sm font-medium rounded-full border border-primary/30 bg-primary/10 text-primary">
+                AI/ML Engineer
+              </span>
+              <span className="text-muted-foreground text-sm">
+                focused on{" "}
+                <span className="text-primary font-medium">
+                  {dynamicTexts[currentTextIndex]}
+                </span>
+              </span>
+            </div>
+
+            {/* Value description - 1-2 lines */}
+            <p className="text-lg md:text-xl text-muted-foreground mb-10 max-w-xl">
+              Building intelligent systems through fundamentals-first learning, rigorous experimentation, and real-world problem solving.
             </p>
 
-            {/* Dynamic headline */}
-            <h2 className="text-2xl md:text-4xl font-semibold mb-14">
-              Building Intelligent Systems with{" "}
-              <span className="text-primary relative inline-block">
-                {dynamicTexts[currentTextIndex]}
-                <span className="absolute -bottom-1 left-0 w-full h-0.5 bg-primary/50" />
-              </span>
-            </h2>
-
-            {/* Primary CTAs - Only two with hover elevation */}
+            {/* Primary CTAs */}
             <div className="flex flex-wrap items-center justify-center lg:justify-start gap-5">
               <Button 
                 onClick={handleViewProjects}
@@ -99,14 +110,14 @@ const Hero = () => {
             </div>
           </div>
 
-          {/* Profile image */}
+          {/* Right: Profile image in isolated rounded container */}
           <div className="flex-shrink-0">
             <div className="relative group">
-              {/* Glow effect behind image */}
-              <div className="absolute inset-0 bg-gradient-to-r from-primary/30 via-secondary/30 to-accent/30 rounded-full blur-2xl opacity-50 group-hover:opacity-70 transition-opacity duration-500" />
+              {/* Subtle glow effect behind image */}
+              <div className="absolute inset-0 bg-gradient-to-r from-primary/20 via-secondary/20 to-accent/20 rounded-2xl blur-2xl opacity-40 group-hover:opacity-60 transition-opacity duration-500" />
               
-              {/* Image container */}
-              <div className="relative w-64 h-64 md:w-80 md:h-80 rounded-full overflow-hidden border-2 border-border group-hover:border-primary/50 transition-all duration-500">
+              {/* Image container - rounded rectangle, not circle */}
+              <div className="relative w-64 h-72 md:w-72 md:h-80 rounded-2xl overflow-hidden border border-border/50 group-hover:border-primary/30 transition-all duration-500 bg-card/50">
                 {/* Placeholder - replace with actual image */}
                 <div className="w-full h-full bg-gradient-to-br from-muted to-card flex items-center justify-center">
                   <span className="text-6xl font-bold text-muted-foreground/30">PB</span>
@@ -116,11 +127,11 @@ const Hero = () => {
           </div>
         </div>
 
-        {/* SECONDARY ZONE - Below the fold */}
-        <div className={`mt-24 md:mt-32 transition-all duration-1000 delay-300 ${isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-10"}`}>
+        {/* LAYER 2: Action Section - Centered with generous spacing */}
+        <div className={`mt-20 md:mt-28 transition-all duration-1000 delay-200 ${isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-10"}`}>
           
-          {/* Social links - Compact icon cards with hover effects */}
-          <div className="flex items-center justify-center gap-4 md:gap-6 mb-12">
+          {/* Social links - Pill-style clickable cards */}
+          <div className="flex items-center justify-center gap-4 md:gap-5 mb-10">
             {socialLinks.map((link) => {
               const Icon = link.icon;
               return (
@@ -129,10 +140,10 @@ const Hero = () => {
                   href={link.href}
                   target={link.href.startsWith("mailto") ? undefined : "_blank"}
                   rel="noopener noreferrer"
-                  className="group relative flex items-center gap-2 p-4 rounded-xl border border-border/50 bg-card/50 hover:border-primary/50 hover:bg-primary/5 hover-glow-primary hover:scale-105 transition-all duration-200 focus:outline-none focus:ring-2 focus:ring-primary/50 focus:ring-offset-2 focus:ring-offset-background"
+                  className="group flex items-center gap-2.5 px-5 py-3 rounded-full border border-border/50 bg-card/30 hover:border-primary/50 hover:bg-primary/5 hover-glow-primary hover:scale-105 transition-all duration-200 focus:outline-none focus:ring-2 focus:ring-primary/50 focus:ring-offset-2 focus:ring-offset-background"
                   aria-label={link.label}
                 >
-                  <Icon className="w-5 h-5 text-muted-foreground group-hover:text-primary transition-colors duration-200" />
+                  <Icon className="w-4 h-4 text-muted-foreground group-hover:text-primary transition-colors duration-200" />
                   <span className="text-sm font-medium text-muted-foreground group-hover:text-foreground transition-colors duration-200">
                     {link.label}
                   </span>
@@ -141,8 +152,8 @@ const Hero = () => {
             })}
           </div>
 
-          {/* My Journey anchor */}
-          <div className="flex justify-center mb-12">
+          {/* My Journey anchor - Centered */}
+          <div className="flex justify-center">
             <Button 
               variant="ghost" 
               onClick={scrollToJourney}
@@ -152,20 +163,43 @@ const Hero = () => {
               <ArrowDown className="ml-2 h-5 w-5" />
             </Button>
           </div>
+        </div>
 
-          {/* Location & Availability */}
-          <div className="flex items-center justify-center gap-2 text-muted-foreground">
+        {/* LAYER 3: Context Section - Bottom, informational */}
+        <div className={`mt-16 md:mt-20 transition-all duration-1000 delay-400 ${isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-10"}`}>
+          
+          {/* Location & Availability - Single calm line */}
+          <div className="flex items-center justify-center gap-2 text-muted-foreground mb-6">
             <MapPin className="w-4 h-4" />
             <span>India</span>
-            <span className="mx-2">•</span>
-            <span className="text-primary">Open to AI/ML internships & entry-level roles</span>
+            <span className="mx-2 text-border">•</span>
+            <span className="text-primary/80">Open to AI/ML internships & entry-level roles</span>
+          </div>
+
+          {/* Currently Exploring - Soft pill badges */}
+          <div className="flex items-center justify-center gap-3 flex-wrap">
+            <div className="flex items-center gap-2 text-muted-foreground/70">
+              <Sparkles className="w-3.5 h-3.5 text-accent/70" />
+              <span className="text-xs font-medium uppercase tracking-wider">Exploring</span>
+            </div>
+            
+            <div className="flex items-center gap-2 flex-wrap justify-center">
+              {exploringItems.map((item) => (
+                <span
+                  key={item}
+                  className="px-3 py-1 text-xs font-medium rounded-full border border-border/30 bg-muted/30 text-muted-foreground hover:bg-muted/50 transition-colors cursor-default"
+                >
+                  {item}
+                </span>
+              ))}
+            </div>
           </div>
         </div>
       </div>
 
       {/* Scroll indicator */}
-      <div className="absolute bottom-8 left-1/2 -translate-x-1/2 animate-bounce">
-        <ArrowDown className="w-6 h-6 text-muted-foreground" />
+      <div className="absolute bottom-6 left-1/2 -translate-x-1/2 animate-bounce">
+        <ArrowDown className="w-5 h-5 text-muted-foreground/50" />
       </div>
     </section>
   );
