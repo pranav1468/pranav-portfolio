@@ -1,9 +1,11 @@
 import Navbar from "@/components/Navbar";
 import Hero from "@/components/Hero";
 import CurrentlyExploring from "@/components/CurrentlyExploring";
-import AboutPreview from "@/components/home/AboutPreview";
+import About from "@/components/About";
+import LearningJourney from "@/components/LearningJourney";
+import Skills from "@/components/Skills";
 import FeaturedProjects from "@/components/home/FeaturedProjects";
-import ContactCTA from "@/components/home/ContactCTA";
+import Contact from "@/components/Contact";
 import Footer from "@/components/Footer";
 import SEO from "@/components/layout/SEO";
 
@@ -19,9 +21,11 @@ const Index = () => {
         <Navbar />
         <Hero />
         <CurrentlyExploring />
-        <AboutPreview />
+        <About />
+        <LearningJourney />
+        <Skills />
         <FeaturedProjects />
-        <ContactCTA />
+        <Contact />
         <Footer />
       </div>
     </>

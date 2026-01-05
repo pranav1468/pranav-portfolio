@@ -3,17 +3,17 @@ import { Code2, Brain, Eye, MessageSquare, Wrench } from "lucide-react";
 
 const skillCategories = [
   {
-    title: "Core",
+    title: "Languages",
     icon: Code2,
     color: "primary",
     skills: [
       { name: "Python", usage: "Primary language for all ML work" },
-      { name: "NumPy", usage: "Numerical computing and array operations" },
-      { name: "Pandas", usage: "Data manipulation and analysis" },
+      { name: "SQL", usage: "Database queries and data extraction" },
+      { name: "JavaScript", usage: "Web development and visualization" },
     ],
   },
   {
-    title: "ML/DL",
+    title: "Frameworks",
     icon: Brain,
     color: "secondary",
     skills: [
@@ -49,7 +49,7 @@ const skillCategories = [
     skills: [
       { name: "Git", usage: "Version control and collaboration" },
       { name: "Docker", usage: "Containerization and deployment" },
-      { name: "Kaggle", usage: "Competitions and datasets" },
+      { name: "Jupyter", usage: "Interactive notebooks for experiments" },
     ],
   },
 ];
@@ -57,29 +57,33 @@ const skillCategories = [
 const colorClasses = {
   primary: {
     border: "border-primary/30 hover:border-primary",
-    bg: "bg-primary/5 hover:bg-primary/10",
+    bg: "bg-primary/5",
     text: "text-primary",
-    glow: "hover:glow-primary",
+    glow: "hover-glow-primary",
+    pill: "hover:bg-primary/10 hover:border-primary/50",
   },
   secondary: {
     border: "border-secondary/30 hover:border-secondary",
-    bg: "bg-secondary/5 hover:bg-secondary/10",
+    bg: "bg-secondary/5",
     text: "text-secondary",
-    glow: "hover:glow-secondary",
+    glow: "hover-glow-secondary",
+    pill: "hover:bg-secondary/10 hover:border-secondary/50",
   },
   accent: {
     border: "border-accent/30 hover:border-accent",
-    bg: "bg-accent/5 hover:bg-accent/10",
+    bg: "bg-accent/5",
     text: "text-accent",
-    glow: "hover:glow-accent",
+    glow: "hover-glow-accent",
+    pill: "hover:bg-accent/10 hover:border-accent/50",
   },
 };
 
 const Skills = () => {
+  const [hoveredCard, setHoveredCard] = useState<string | null>(null);
   const [hoveredSkill, setHoveredSkill] = useState<string | null>(null);
 
   return (
-    <section id="skills" className="py-20 px-4 bg-muted/20">
+    <section id="skills" className="py-24 md:py-32 px-4 bg-muted/20">
       <div className="max-w-6xl mx-auto">
         <h2 className="text-3xl md:text-4xl font-bold text-center mb-4">
           Technical <span className="text-gradient">Skills</span>
@@ -88,22 +92,31 @@ const Skills = () => {
           Tools and technologies I use to build intelligent systems
         </p>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+        {/* Larger cards with more spacing */}
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
           {skillCategories.map((category) => {
             const Icon = category.icon;
             const colors = colorClasses[category.color as keyof typeof colorClasses];
+            const isHovered = hoveredCard === category.title;
 
             return (
               <div
                 key={category.title}
-                className={`p-6 rounded-lg border ${colors.border} ${colors.bg} ${colors.glow} transition-all duration-300`}
+                className={`p-8 rounded-2xl border bg-card/50 transition-all duration-300 ${colors.border} ${
+                  isHovered ? `${colors.glow} -translate-y-1` : ""
+                }`}
+                onMouseEnter={() => setHoveredCard(category.title)}
+                onMouseLeave={() => setHoveredCard(null)}
               >
-                <div className="flex items-center gap-3 mb-4">
-                  <Icon className={`w-6 h-6 ${colors.text}`} />
+                <div className="flex items-center gap-4 mb-6">
+                  <div className={`p-3 rounded-xl ${colors.bg} transition-transform duration-200 ${isHovered ? "scale-110" : ""}`}>
+                    <Icon className={`w-6 h-6 ${colors.text}`} />
+                  </div>
                   <h3 className="text-xl font-semibold">{category.title}</h3>
                 </div>
 
-                <div className="space-y-3">
+                {/* Skill pills with breathing room */}
+                <div className="flex flex-wrap gap-3">
                   {category.skills.map((skill) => (
                     <div
                       key={skill.name}
@@ -111,19 +124,22 @@ const Skills = () => {
                       onMouseEnter={() => setHoveredSkill(skill.name)}
                       onMouseLeave={() => setHoveredSkill(null)}
                     >
-                      <div className="flex items-center justify-between p-3 rounded-md bg-background/50 border border-border/50 cursor-default transition-colors hover:border-border">
-                        <span className="font-medium">{skill.name}</span>
-                      </div>
+                      <span 
+                        className={`inline-block px-4 py-2 rounded-lg bg-muted/50 border border-border/50 text-sm font-medium cursor-pointer transition-all duration-200 ${colors.pill}`}
+                      >
+                        {skill.name}
+                      </span>
                       
-                      {/* Tooltip */}
+                      {/* Tooltip on hover */}
                       <div
-                        className={`absolute left-0 right-0 mt-2 p-3 rounded-md bg-popover border border-border text-sm text-muted-foreground z-10 transition-all duration-200 ${
+                        className={`absolute left-1/2 -translate-x-1/2 bottom-full mb-2 px-3 py-2 rounded-lg bg-popover border border-border text-xs text-muted-foreground whitespace-nowrap z-20 transition-all duration-200 ${
                           hoveredSkill === skill.name
                             ? "opacity-100 translate-y-0"
-                            : "opacity-0 -translate-y-2 pointer-events-none"
+                            : "opacity-0 translate-y-2 pointer-events-none"
                         }`}
                       >
                         {skill.usage}
+                        <div className="absolute left-1/2 -translate-x-1/2 top-full w-2 h-2 bg-popover border-b border-r border-border rotate-45 -mt-1" />
                       </div>
                     </div>
                   ))}

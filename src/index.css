@@ -133,9 +133,28 @@
               0 0 40px hsl(var(--glow-primary) / 0.1);
 }
 
+.hover-glow-secondary {
+  transition: box-shadow 0.3s ease, transform 0.2s ease;
+}
 .hover-glow-secondary:hover {
   box-shadow: 0 0 20px hsl(var(--glow-secondary) / 0.25),
               0 0 40px hsl(var(--glow-secondary) / 0.1);
+}
+
+.hover-glow-accent {
+  transition: box-shadow 0.3s ease, transform 0.2s ease;
+}
+.hover-glow-accent:hover {
+  box-shadow: 0 0 20px hsl(var(--glow-accent) / 0.25),
+              0 0 40px hsl(var(--glow-accent) / 0.1);
+}
+
+/* Card interaction utilities */
+.interactive-card {
+  @apply transition-all duration-300;
+}
+.interactive-card:hover {
+  @apply -translate-y-1;
 }
 
   .grid-pattern {
