@@ -7,6 +7,7 @@ import { ThemeProvider } from "@/hooks/useTheme";
 import PageTransition from "@/components/layout/PageTransition";
 import ScrollToTop from "@/components/layout/ScrollToTop";
 import Index from "./pages/Index";
+import About from "./pages/About";
 import Projects from "./pages/Projects";
 import ProjectDetail from "./pages/ProjectDetail";
 import Blog from "./pages/Blog";
@@ -26,6 +27,7 @@ const App = () => (
           <PageTransition>
             <Routes>
               <Route path="/" element={<Index />} />
+              <Route path="/about" element={<About />} />
               <Route path="/projects" element={<Projects />} />
               <Route path="/projects/:slug" element={<ProjectDetail />} />
               <Route path="/blog" element={<Blog />} />

@@ -51,132 +51,108 @@ const Hero = () => {
   };
 
   return (
-    <section id="home" className="relative min-h-screen flex flex-col justify-between overflow-hidden pt-20 pb-12">
+    <section id="home" className="relative min-h-screen flex flex-col overflow-hidden pt-20 pb-16">
       {/* Background grid pattern */}
       <div className="absolute inset-0 grid-pattern opacity-50" />
 
       {/* Gradient overlay */}
       <div className="absolute inset-0 bg-gradient-to-b from-transparent via-background/50 to-background" />
 
-      <div className="relative z-10 px-4 max-w-6xl mx-auto w-full flex flex-col flex-1">
+      <div className="relative z-10 px-4 max-w-4xl mx-auto w-full flex flex-col flex-1 justify-center">
         
-        {/* LAYER 1: Primary Identity Section */}
-        <div className={`flex flex-col lg:flex-row items-center gap-12 lg:gap-20 pt-8 md:pt-16 transition-all duration-1000 ${isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-10"}`}>
+        {/* PRIMARY SECTION: Name, Role, Description, CTAs */}
+        <div className={`text-center transition-all duration-1000 ${isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-10"}`}>
           
-          {/* Left: Name, Role Badge, Value Description */}
-          <div className="flex-1 text-center lg:text-left">
-            {/* Name - Largest text */}
-            <h1 className="text-5xl md:text-7xl lg:text-8xl font-bold mb-6 tracking-tight">
-              <span className="text-gradient">Pranav Baghare</span>
-            </h1>
+          {/* Name - Largest text */}
+          <h1 className="text-5xl md:text-7xl lg:text-8xl font-bold mb-6 tracking-tight">
+            <span className="text-gradient">Pranav Baghare</span>
+          </h1>
 
-            {/* Role as pill/badge */}
-            <div className="flex items-center justify-center lg:justify-start gap-3 mb-6">
-              <span className="px-4 py-2 text-sm font-medium rounded-full border border-primary/30 bg-primary/10 text-primary">
-                AI/ML Engineer
+          {/* Role / Focus text */}
+          <div className="flex items-center justify-center gap-3 mb-6">
+            <span className="px-4 py-2 text-sm font-medium rounded-full border border-primary/30 bg-primary/10 text-primary">
+              AI/ML Engineer
+            </span>
+            <span className="text-muted-foreground text-sm">
+              focused on{" "}
+              <span className="text-primary font-medium">
+                {dynamicTexts[currentTextIndex]}
               </span>
-              <span className="text-muted-foreground text-sm">
-                focused on{" "}
-                <span className="text-primary font-medium">
-                  {dynamicTexts[currentTextIndex]}
-                </span>
-              </span>
-            </div>
-
-            {/* Value description - 1-2 lines */}
-            <p className="text-lg md:text-xl text-muted-foreground mb-10 max-w-xl">
-              Building intelligent systems through fundamentals-first learning, rigorous experimentation, and real-world problem solving.
-            </p>
-
-            {/* Primary CTAs */}
-            <div className="flex flex-wrap items-center justify-center lg:justify-start gap-5">
-              <Button 
-                onClick={handleViewProjects}
-                className="bg-primary text-primary-foreground hover:bg-primary/90 px-8 py-6 text-lg hover-glow-primary hover:-translate-y-0.5 transition-all duration-200"
-              >
-                View Projects
-              </Button>
-              
-              <Button 
-                variant="outline" 
-                className="border-primary/50 text-foreground hover:bg-primary/10 hover:border-primary px-8 py-6 text-lg hover:-translate-y-0.5 transition-all duration-200"
-                asChild
-              >
-                <a href="/resume.pdf" download>
-                  <FileText className="mr-2 h-5 w-5" />
-                  Download Resume
-                </a>
-              </Button>
-            </div>
+            </span>
           </div>
 
-          {/* Right: Profile image in isolated rounded container */}
-          <div className="flex-shrink-0">
-            <div className="relative group">
-              {/* Subtle glow effect behind image */}
-              <div className="absolute inset-0 bg-gradient-to-r from-primary/20 via-secondary/20 to-accent/20 rounded-2xl blur-2xl opacity-40 group-hover:opacity-60 transition-opacity duration-500" />
-              
-              {/* Image container - rounded rectangle, not circle */}
-              <div className="relative w-64 h-72 md:w-72 md:h-80 rounded-2xl overflow-hidden border border-border/50 group-hover:border-primary/30 transition-all duration-500 bg-card/50">
-                {/* Placeholder - replace with actual image */}
-                <div className="w-full h-full bg-gradient-to-br from-muted to-card flex items-center justify-center">
-                  <span className="text-6xl font-bold text-muted-foreground/30">PB</span>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
+          {/* Description paragraph */}
+          <p className="text-lg md:text-xl text-muted-foreground mb-10 max-w-2xl mx-auto leading-relaxed">
+            Building intelligent systems through fundamentals-first learning, rigorous experimentation, and real-world problem solving.
+          </p>
 
-        {/* LAYER 2: Action Section - Centered with generous spacing */}
-        <div className={`mt-20 md:mt-28 transition-all duration-1000 delay-200 ${isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-10"}`}>
-          
-          {/* Social links - Pill-style clickable cards */}
-          <div className="flex items-center justify-center gap-4 md:gap-5 mb-10">
-            {socialLinks.map((link) => {
-              const Icon = link.icon;
-              return (
-                <a
-                  key={link.label}
-                  href={link.href}
-                  target={link.href.startsWith("mailto") ? undefined : "_blank"}
-                  rel="noopener noreferrer"
-                  className="group flex items-center gap-2.5 px-5 py-3 rounded-full border border-border/50 bg-card/30 hover:border-primary/50 hover:bg-primary/5 hover-glow-primary hover:scale-105 transition-all duration-200 focus:outline-none focus:ring-2 focus:ring-primary/50 focus:ring-offset-2 focus:ring-offset-background"
-                  aria-label={link.label}
-                >
-                  <Icon className="w-4 h-4 text-muted-foreground group-hover:text-primary transition-colors duration-200" />
-                  <span className="text-sm font-medium text-muted-foreground group-hover:text-foreground transition-colors duration-200">
-                    {link.label}
-                  </span>
-                </a>
-              );
-            })}
-          </div>
-
-          {/* My Journey anchor - Centered */}
-          <div className="flex justify-center">
+          {/* Primary CTAs: View Projects + Download Resume */}
+          <div className="flex flex-wrap items-center justify-center gap-5 mb-16">
             <Button 
-              variant="ghost" 
-              onClick={scrollToJourney}
-              className="text-muted-foreground hover:text-foreground hover:bg-muted/50 transition-colors duration-200"
+              onClick={handleViewProjects}
+              className="bg-primary text-primary-foreground hover:bg-primary/90 px-8 py-6 text-lg hover-glow-primary hover:-translate-y-0.5 transition-all duration-200"
             >
-              My Journey
-              <ArrowDown className="ml-2 h-5 w-5" />
+              View Projects
+            </Button>
+            
+            <Button 
+              variant="outline" 
+              className="border-primary/50 text-foreground hover:bg-primary/10 hover:border-primary px-8 py-6 text-lg hover:-translate-y-0.5 transition-all duration-200"
+              asChild
+            >
+              <a href="/resume.pdf" download>
+                <FileText className="mr-2 h-5 w-5" />
+                Download Resume
+              </a>
             </Button>
           </div>
         </div>
 
-        {/* LAYER 3: Context Section - Bottom, informational */}
-        <div className={`mt-16 md:mt-20 transition-all duration-1000 delay-400 ${isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-10"}`}>
-          
-          {/* Location & Availability - Single calm line */}
-          <div className="flex items-center justify-center gap-2 text-muted-foreground mb-6">
+        {/* SECONDARY META SECTION: Location + Availability (below buttons) */}
+        <div className={`text-center mb-12 transition-all duration-1000 delay-100 ${isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-10"}`}>
+          <div className="flex items-center justify-center gap-2 text-muted-foreground text-sm">
             <MapPin className="w-4 h-4" />
             <span>India</span>
-            <span className="mx-2 text-border">•</span>
+            <span className="mx-2 text-border/50">•</span>
             <span className="text-primary/80">Open to AI/ML internships & entry-level roles</span>
           </div>
+        </div>
 
-          {/* Currently Exploring - Soft pill badges */}
+        {/* SOCIAL LINKS SECTION: Separated row with pills */}
+        <div className={`flex items-center justify-center gap-4 mb-12 transition-all duration-1000 delay-200 ${isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-10"}`}>
+          {socialLinks.map((link) => {
+            const Icon = link.icon;
+            return (
+              <a
+                key={link.label}
+                href={link.href}
+                target={link.href.startsWith("mailto") ? undefined : "_blank"}
+                rel="noopener noreferrer"
+                className="group flex items-center gap-2.5 px-5 py-2.5 rounded-full border border-border/50 bg-card/30 hover:border-primary/50 hover:bg-primary/5 hover-glow-primary hover:scale-105 transition-all duration-200 focus:outline-none focus:ring-2 focus:ring-primary/50 focus:ring-offset-2 focus:ring-offset-background"
+                aria-label={link.label}
+              >
+                <Icon className="w-4 h-4 text-muted-foreground group-hover:text-primary transition-colors duration-200" />
+                <span className="text-sm font-medium text-muted-foreground group-hover:text-foreground transition-colors duration-200">
+                  {link.label}
+                </span>
+              </a>
+            );
+          })}
+        </div>
+
+        {/* MY JOURNEY LINK: Separate line, centered, calm text link */}
+        <div className={`text-center mb-12 transition-all duration-1000 delay-300 ${isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-10"}`}>
+          <button 
+            onClick={scrollToJourney}
+            className="inline-flex items-center gap-2 text-muted-foreground hover:text-foreground transition-colors duration-200 text-sm"
+          >
+            My Journey
+            <ArrowDown className="w-4 h-4" />
+          </button>
+        </div>
+
+        {/* CURRENTLY EXPLORING: Bottom context section */}
+        <div className={`text-center transition-all duration-1000 delay-400 ${isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-10"}`}>
           <div className="flex items-center justify-center gap-3 flex-wrap">
             <div className="flex items-center gap-2 text-muted-foreground/70">
               <Sparkles className="w-3.5 h-3.5 text-accent/70" />

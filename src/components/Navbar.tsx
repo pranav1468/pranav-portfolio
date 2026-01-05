@@ -6,7 +6,7 @@ import { useTheme } from "@/hooks/useTheme";
 
 const navLinks = [
   { label: "Home", href: "/", isRoute: true },
-  { label: "About", href: "/#about", isRoute: false },
+  { label: "About", href: "/about", isRoute: true },
   { label: "Projects", href: "/projects", isRoute: true },
   { label: "Blog", href: "/blog", isRoute: true },
   { label: "Contact", href: "/#contact", isRoute: false },
