@@ -109,20 +109,34 @@
     @apply bg-clip-text text-transparent bg-gradient-to-r from-primary via-secondary to-accent;
   }
 
-  .glow-primary {
-    box-shadow: 0 0 20px hsl(var(--glow-primary) / 0.3),
-                0 0 40px hsl(var(--glow-primary) / 0.1);
-  }
+.glow-primary {
+  box-shadow: 0 0 20px hsl(var(--glow-primary) / 0.3),
+              0 0 40px hsl(var(--glow-primary) / 0.1);
+}
 
-  .glow-secondary {
-    box-shadow: 0 0 20px hsl(var(--glow-secondary) / 0.3),
-                0 0 40px hsl(var(--glow-secondary) / 0.1);
-  }
+.glow-secondary {
+  box-shadow: 0 0 20px hsl(var(--glow-secondary) / 0.3),
+              0 0 40px hsl(var(--glow-secondary) / 0.1);
+}
 
-  .glow-accent {
-    box-shadow: 0 0 20px hsl(var(--glow-accent) / 0.3),
-                0 0 40px hsl(var(--glow-accent) / 0.1);
-  }
+.glow-accent {
+  box-shadow: 0 0 20px hsl(var(--glow-accent) / 0.3),
+              0 0 40px hsl(var(--glow-accent) / 0.1);
+}
+
+/* Hover-only glow effects */
+.hover-glow-primary {
+  transition: box-shadow 0.3s ease;
+}
+.hover-glow-primary:hover {
+  box-shadow: 0 0 20px hsl(var(--glow-primary) / 0.25),
+              0 0 40px hsl(var(--glow-primary) / 0.1);
+}
+
+.hover-glow-secondary:hover {
+  box-shadow: 0 0 20px hsl(var(--glow-secondary) / 0.25),
+              0 0 40px hsl(var(--glow-secondary) / 0.1);
+}
 
   .grid-pattern {
     background-image: 

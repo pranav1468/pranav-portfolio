@@ -19,6 +19,10 @@ export interface Project {
     metrics: string;
     outcome: string;
   };
+  resultImages?: {
+    src: string;
+    caption: string;
+  }[];
 }
 
 export const projects: Project[] = [
@@ -56,6 +60,11 @@ export const projects: Project[] = [
       metrics: "mAP@0.5: 92.3%",
       outcome: "Achieved real-time detection at 30+ FPS on consumer GPU",
     },
+    resultImages: [
+      { src: "/placeholder.svg", caption: "Detection output with bounding boxes" },
+      { src: "/placeholder.svg", caption: "Confusion matrix showing class performance" },
+      { src: "/placeholder.svg", caption: "mAP curve across training epochs" },
+    ],
   },
   {
     id: "forest-segmentation",

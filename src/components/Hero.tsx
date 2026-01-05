@@ -1,4 +1,5 @@
 import { useState, useEffect } from "react";
+import { useNavigate } from "react-router-dom";
 import { Button } from "@/components/ui/button";
 import { ArrowDown, FileText, MapPin, Github, Linkedin, Mail } from "lucide-react";
 
@@ -7,6 +8,7 @@ const dynamicTexts = ["Machine Learning", "Deep Learning", "Computer Vision", "N
 const Hero = () => {
   const [currentTextIndex, setCurrentTextIndex] = useState(0);
   const [isVisible, setIsVisible] = useState(false);
+  const navigate = useNavigate();
 
   useEffect(() => {
     setIsVisible(true);
@@ -16,8 +18,8 @@ const Hero = () => {
     return () => clearInterval(interval);
   }, []);
 
-  const scrollToProjects = () => {
-    document.getElementById("projects")?.scrollIntoView({ behavior: "smooth" });
+  const handleViewProjects = () => {
+    navigate("/projects");
   };
 
   const scrollToJourney = () => {
@@ -25,35 +27,31 @@ const Hero = () => {
   };
 
   return (
-    <section id="home" className="relative min-h-screen flex items-center justify-center overflow-hidden pt-16">
+    <section id="home" className="relative min-h-screen flex flex-col justify-center overflow-hidden pt-16">
       {/* Background grid pattern */}
       <div className="absolute inset-0 grid-pattern opacity-50" />
-      
-      {/* Floating geometric shapes */}
-      <div className="absolute top-20 left-10 w-32 h-32 border border-primary/20 rounded-full animate-float opacity-30" />
-      <div className="absolute bottom-32 right-20 w-24 h-24 border border-secondary/20 rotate-45 animate-float opacity-30" style={{ animationDelay: "2s" }} />
-      <div className="absolute top-1/3 right-1/4 w-16 h-16 border border-accent/20 rounded-lg animate-float opacity-30" style={{ animationDelay: "4s" }} />
 
       {/* Gradient overlay */}
       <div className="absolute inset-0 bg-gradient-to-b from-transparent via-background/50 to-background" />
 
       <div className="relative z-10 px-4 max-w-6xl mx-auto w-full">
+        {/* PRIMARY ZONE - Above the fold */}
         <div className={`flex flex-col lg:flex-row items-center gap-12 transition-all duration-1000 ${isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-10"}`}>
           
           {/* Text content */}
           <div className="flex-1 text-center lg:text-left">
             {/* Name */}
-            <h1 className="text-5xl md:text-7xl font-bold mb-4 tracking-tight">
+            <h1 className="text-5xl md:text-7xl font-bold mb-6 tracking-tight">
               <span className="text-gradient">Pranav Baghare</span>
             </h1>
 
             {/* Value proposition */}
-            <p className="text-lg md:text-xl text-muted-foreground mb-6 max-w-2xl">
+            <p className="text-lg md:text-xl text-muted-foreground mb-8 max-w-2xl">
               AI/ML Engineer focused on fundamentals, experimentation, and real-world systems
             </p>
 
             {/* Dynamic headline */}
-            <h2 className="text-2xl md:text-4xl font-semibold mb-8">
+            <h2 className="text-2xl md:text-4xl font-semibold mb-12">
               Building Intelligent Systems with{" "}
               <span className="text-primary relative">
                 {dynamicTexts[currentTextIndex]}
@@ -61,19 +59,11 @@ const Hero = () => {
               </span>
             </h2>
 
-            {/* Location & Availability */}
-            <div className="flex items-center justify-center lg:justify-start gap-2 text-muted-foreground mb-10">
-              <MapPin className="w-4 h-4" />
-              <span>India</span>
-              <span className="mx-2">•</span>
-              <span className="text-primary">Open to AI/ML internships & entry-level roles</span>
-            </div>
-
-            {/* CTAs */}
-            <div className="flex flex-wrap items-center justify-center lg:justify-start gap-4 mb-8">
+            {/* Primary CTAs - Only two */}
+            <div className="flex flex-wrap items-center justify-center lg:justify-start gap-4">
               <Button 
-                onClick={scrollToProjects}
-                className="glow-primary bg-primary text-primary-foreground hover:bg-primary/90 px-8 py-6 text-lg"
+                onClick={handleViewProjects}
+                className="bg-primary text-primary-foreground hover:bg-primary/90 px-8 py-6 text-lg hover-glow-primary transition-shadow"
               >
                 View Projects
               </Button>
@@ -88,44 +78,6 @@ const Hero = () => {
                   Download Resume
                 </a>
               </Button>
-              
-              <Button 
-                variant="ghost" 
-                onClick={scrollToJourney}
-                className="text-muted-foreground hover:text-foreground px-8 py-6 text-lg"
-              >
-                My AI Journey
-                <ArrowDown className="ml-2 h-5 w-5" />
-              </Button>
-            </div>
-
-            {/* Social links */}
-            <div className="flex items-center justify-center lg:justify-start gap-4">
-              <a
-                href="https://github.com/pranavbaghare"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="p-2 rounded-full border border-border hover:border-primary hover:text-primary transition-colors"
-                aria-label="GitHub"
-              >
-                <Github className="w-5 h-5" />
-              </a>
-              <a
-                href="https://linkedin.com/in/pranavbaghare"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="p-2 rounded-full border border-border hover:border-primary hover:text-primary transition-colors"
-                aria-label="LinkedIn"
-              >
-                <Linkedin className="w-5 h-5" />
-              </a>
-              <a
-                href="mailto:pranav@example.com"
-                className="p-2 rounded-full border border-border hover:border-primary hover:text-primary transition-colors"
-                aria-label="Email"
-              >
-                <Mail className="w-5 h-5" />
-              </a>
             </div>
           </div>
 
@@ -141,14 +93,63 @@ const Hero = () => {
                 <div className="w-full h-full bg-gradient-to-br from-muted to-card flex items-center justify-center">
                   <span className="text-6xl font-bold text-muted-foreground/30">PB</span>
                 </div>
-                {/* Uncomment and use when you have an actual image:
-                <img 
-                  src="/profile.jpg" 
-                  alt="Pranav Baghare"
-                  className="w-full h-full object-cover"
-                /> */}
               </div>
             </div>
+          </div>
+        </div>
+
+        {/* SECONDARY ZONE - Below the fold */}
+        <div className={`mt-20 md:mt-28 transition-all duration-1000 delay-300 ${isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-10"}`}>
+          {/* Location & Availability */}
+          <div className="flex items-center justify-center gap-2 text-muted-foreground mb-10">
+            <MapPin className="w-4 h-4" />
+            <span>India</span>
+            <span className="mx-2">•</span>
+            <span className="text-primary">Open to AI/ML internships & entry-level roles</span>
+          </div>
+
+          {/* Social links - Compact icon cards with hover glow */}
+          <div className="flex items-center justify-center gap-6 mb-10">
+            <a
+              href="https://github.com/pranavbaghare"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="group flex items-center gap-2 p-3 rounded-lg border border-border/50 bg-card/50 hover:border-primary/50 hover:bg-primary/5 hover-glow-primary transition-all duration-300"
+              aria-label="GitHub"
+            >
+              <Github className="w-5 h-5 text-muted-foreground group-hover:text-primary transition-colors" />
+              <span className="text-sm text-muted-foreground group-hover:text-foreground transition-colors">GitHub</span>
+            </a>
+            <a
+              href="https://linkedin.com/in/pranavbaghare"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="group flex items-center gap-2 p-3 rounded-lg border border-border/50 bg-card/50 hover:border-primary/50 hover:bg-primary/5 hover-glow-primary transition-all duration-300"
+              aria-label="LinkedIn"
+            >
+              <Linkedin className="w-5 h-5 text-muted-foreground group-hover:text-primary transition-colors" />
+              <span className="text-sm text-muted-foreground group-hover:text-foreground transition-colors">LinkedIn</span>
+            </a>
+            <a
+              href="mailto:pranav@example.com"
+              className="group flex items-center gap-2 p-3 rounded-lg border border-border/50 bg-card/50 hover:border-primary/50 hover:bg-primary/5 hover-glow-primary transition-all duration-300"
+              aria-label="Email"
+            >
+              <Mail className="w-5 h-5 text-muted-foreground group-hover:text-primary transition-colors" />
+              <span className="text-sm text-muted-foreground group-hover:text-foreground transition-colors">Email</span>
+            </a>
+          </div>
+
+          {/* My AI Journey anchor */}
+          <div className="flex justify-center">
+            <Button 
+              variant="ghost" 
+              onClick={scrollToJourney}
+              className="text-muted-foreground hover:text-foreground"
+            >
+              My AI Journey
+              <ArrowDown className="ml-2 h-5 w-5" />
+            </Button>
           </div>
         </div>
       </div>

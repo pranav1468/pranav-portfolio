@@ -142,6 +142,27 @@ const ProjectDetail = () => {
                 </div>
               </section>
 
+              {/* Result Images - simple grid with captions */}
+              {project.resultImages && project.resultImages.length > 0 && (
+                <section>
+                  <h2 className="text-xl font-semibold mb-4 text-primary">Results</h2>
+                  <div className="grid gap-6 md:grid-cols-2">
+                    {project.resultImages.map((image, index) => (
+                      <div key={index} className="rounded-lg border border-border overflow-hidden bg-card/30">
+                        <img
+                          src={image.src}
+                          alt={image.caption}
+                          className="w-full aspect-video object-cover"
+                        />
+                        <p className="p-3 text-sm text-muted-foreground text-center">
+                          {image.caption}
+                        </p>
+                      </div>
+                    ))}
+                  </div>
+                </section>
+              )}
+
               {/* Challenges & Decisions */}
               <section>
                 <h2 className="text-xl font-semibold mb-4 text-primary">Challenges & Decisions</h2>

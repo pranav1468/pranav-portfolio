@@ -30,7 +30,7 @@ const Projects = () => {
               {projects.map((project) => (
                 <article
                   key={project.id}
-                  className="group p-6 md:p-8 rounded-lg border border-border bg-card/30 hover:border-primary/50 hover:bg-card/50 transition-all duration-300"
+                  className="group p-6 md:p-8 rounded-lg border border-border/50 bg-card/30 hover:border-primary/50 hover:bg-card/50 hover-glow-primary transition-all duration-300"
                 >
                   <div className="flex flex-col md:flex-row md:items-start md:justify-between gap-4">
                     <div className="flex-1">
