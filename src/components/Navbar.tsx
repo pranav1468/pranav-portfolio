@@ -1,50 +1,68 @@
 import { useState, useEffect } from "react";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 import { Menu, X, Sun, Moon } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { useTheme } from "@/hooks/useTheme";
 
 const navLinks = [
-  { label: "Home", href: "#home" },
-  { label: "About", href: "#about" },
-  { label: "Projects", href: "#projects" },
-  { label: "Blog", href: "#blog" },
-  { label: "Contact", href: "#contact" },
+  { label: "Home", href: "/", isRoute: true },
+  { label: "About", href: "/#about", isRoute: false },
+  { label: "Projects", href: "/projects", isRoute: true },
+  { label: "Blog", href: "/blog", isRoute: true },
+  { label: "Contact", href: "/#contact", isRoute: false },
 ];
 
 const Navbar = () => {
   const [isScrolled, setIsScrolled] = useState(false);
-  const [activeSection, setActiveSection] = useState("home");
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const { theme, toggleTheme } = useTheme();
+  const location = useLocation();
+  const navigate = useNavigate();
 
   useEffect(() => {
     const handleScroll = () => {
       setIsScrolled(window.scrollY > 20);
-
-      // Detect active section
-      const sections = navLinks.map((link) => link.href.slice(1));
-      for (const section of sections.reverse()) {
-        const element = document.getElementById(section);
-        if (element) {
-          const rect = element.getBoundingClientRect();
-          if (rect.top <= 150) {
-            setActiveSection(section);
-            break;
-          }
-        }
-      }
     };
 
     window.addEventListener("scroll", handleScroll);
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
-  const scrollToSection = (href: string) => {
-    const element = document.getElementById(href.slice(1));
-    if (element) {
-      element.scrollIntoView({ behavior: "smooth" });
-    }
+  const handleNavClick = (href: string, isRoute: boolean) => {
     setIsMobileMenuOpen(false);
+    
+    // If it's a hash link (scroll to section)
+    if (href.includes("#")) {
+      const [path, hash] = href.split("#");
+      
+      // If we're not on the homepage, navigate there first
+      if (location.pathname !== "/" && path === "/") {
+        navigate("/");
+        // Wait for navigation, then scroll
+        setTimeout(() => {
+          const element = document.getElementById(hash);
+          if (element) {
+            element.scrollIntoView({ behavior: "smooth" });
+          }
+        }, 100);
+      } else {
+        // Already on homepage, just scroll
+        const element = document.getElementById(hash);
+        if (element) {
+          element.scrollIntoView({ behavior: "smooth" });
+        }
+      }
+    }
+  };
+
+  const isActive = (href: string, isRoute: boolean) => {
+    if (isRoute) {
+      if (href === "/") {
+        return location.pathname === "/";
+      }
+      return location.pathname.startsWith(href);
+    }
+    return false;
   };
 
   return (
@@ -58,27 +76,37 @@ const Navbar = () => {
       <div className="max-w-6xl mx-auto px-4 sm:px-6">
         <div className="flex items-center justify-between h-16">
           {/* Logo */}
-          <button
-            onClick={() => scrollToSection("#home")}
+          <Link
+            to="/"
             className="text-lg font-semibold text-foreground hover:text-primary transition-colors"
           >
             Pranav Baghare
-          </button>
+          </Link>
 
           {/* Desktop Navigation */}
           <div className="hidden md:flex items-center gap-1">
             {navLinks.map((link) => (
-              <button
-                key={link.href}
-                onClick={() => scrollToSection(link.href)}
-                className={`px-4 py-2 text-sm font-medium transition-colors rounded-md ${
-                  activeSection === link.href.slice(1)
-                    ? "text-primary"
-                    : "text-muted-foreground hover:text-foreground"
-                }`}
-              >
-                {link.label}
-              </button>
+              link.isRoute ? (
+                <Link
+                  key={link.href}
+                  to={link.href}
+                  className={`px-4 py-2 text-sm font-medium transition-colors rounded-md ${
+                    isActive(link.href, link.isRoute)
+                      ? "text-primary"
+                      : "text-muted-foreground hover:text-foreground"
+                  }`}
+                >
+                  {link.label}
+                </Link>
+              ) : (
+                <button
+                  key={link.href}
+                  onClick={() => handleNavClick(link.href, link.isRoute)}
+                  className="px-4 py-2 text-sm font-medium transition-colors rounded-md text-muted-foreground hover:text-foreground"
+                >
+                  {link.label}
+                </button>
+              )
             ))}
 
             {/* Theme Toggle */}
@@ -136,17 +164,28 @@ const Navbar = () => {
         >
           <div className="flex flex-col gap-1">
             {navLinks.map((link) => (
-              <button
-                key={link.href}
-                onClick={() => scrollToSection(link.href)}
-                className={`px-4 py-2 text-sm font-medium text-left transition-colors rounded-md ${
-                  activeSection === link.href.slice(1)
-                    ? "text-primary bg-primary/10"
-                    : "text-muted-foreground hover:text-foreground hover:bg-muted/50"
-                }`}
-              >
-                {link.label}
-              </button>
+              link.isRoute ? (
+                <Link
+                  key={link.href}
+                  to={link.href}
+                  onClick={() => setIsMobileMenuOpen(false)}
+                  className={`px-4 py-2 text-sm font-medium text-left transition-colors rounded-md ${
+                    isActive(link.href, link.isRoute)
+                      ? "text-primary bg-primary/10"
+                      : "text-muted-foreground hover:text-foreground hover:bg-muted/50"
+                  }`}
+                >
+                  {link.label}
+                </Link>
+              ) : (
+                <button
+                  key={link.href}
+                  onClick={() => handleNavClick(link.href, link.isRoute)}
+                  className="px-4 py-2 text-sm font-medium text-left transition-colors rounded-md text-muted-foreground hover:text-foreground hover:bg-muted/50"
+                >
+                  {link.label}
+                </button>
+              )
             ))}
           </div>
         </div>
