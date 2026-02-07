@@ -84,7 +84,7 @@ const Skills = () => {
 
   return (
     <section id="skills" className="py-24 md:py-32 px-4 bg-muted/20">
-      <div className="max-w-4xl mx-auto">
+      <div className="w-full max-w-5xl mx-auto">
         <h2 className="text-3xl md:text-4xl font-bold text-center mb-4">
           Technical <span className="text-gradient">Skills</span>
         </h2>
@@ -92,8 +92,8 @@ const Skills = () => {
           Tools and technologies I use to build intelligent systems
         </p>
 
-        {/* Two cards per row - tighter layout */}
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+        {/* Full-width grid with equal columns */}
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
           {skillCategories.map((category) => {
             const Icon = category.icon;
             const colors = colorClasses[category.color as keyof typeof colorClasses];
