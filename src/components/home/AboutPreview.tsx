@@ -32,7 +32,7 @@ const AboutPreview = () => {
         {/* Location */}
         <div className="flex items-center justify-center gap-2 text-muted-foreground mt-8">
           <MapPin className="w-4 h-4 text-primary" />
-          <span>Mumbai, India</span>
+          <span>Indore, India</span>
         </div>
       </div>
     </section>
