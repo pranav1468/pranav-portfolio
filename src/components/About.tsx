@@ -4,17 +4,17 @@ import { GraduationCap, Code, Brain, Lightbulb, MapPin, Mail } from "lucide-reac
 const timelineItems = [
   {
     icon: GraduationCap,
-    title: "Computer Science Background",
-    period: "Foundation",
-    description: "Built strong programming fundamentals and problem-solving skills",
+    title: "B.Tech Computer Science",
+    period: "Oct 2020 – Oct 2024",
+    description: "Bachelor of Technology at SVVV, Indore",
     detail: "Focused on algorithms, data structures, and mathematics — the building blocks for ML",
   },
   {
     icon: Code,
-    title: "CDAC PGDAI Program",
-    period: "Specialization",
-    description: "Intensive AI/ML training with hands-on project work",
-    detail: "Covered supervised/unsupervised learning, neural networks, and deployment pipelines",
+    title: "CDAC PG-DAI Program",
+    period: "Aug 2025 – Feb 2026",
+    description: "Post Graduate Diploma in AI at CDAC, Noida",
+    detail: "Covered supervised/unsupervised learning, DNNs, CNNs, RNNs, GANs, NLP, LSTM, and Transformers",
   },
   {
     icon: Brain,
@@ -75,14 +75,14 @@ const About = () => {
           <div className="flex flex-wrap items-center justify-center gap-4 mt-8">
             <span className="flex items-center gap-2 px-4 py-2 rounded-full bg-muted/50 border border-border/50 text-muted-foreground hover:bg-muted hover:border-border transition-all duration-200 cursor-default">
               <MapPin className="w-4 h-4 text-primary" />
-              Mumbai, India
+              Indore, India
             </span>
             <a 
-              href="mailto:pranav@example.com" 
+              href="mailto:pranav.baghare@email.com" 
               className="flex items-center gap-2 px-4 py-2 rounded-full bg-muted/50 border border-border/50 text-muted-foreground hover:bg-primary/10 hover:border-primary/50 hover:text-foreground transition-all duration-200"
             >
               <Mail className="w-4 h-4 text-primary" />
-              pranav@example.com
+              pranav.baghare@email.com
             </a>
           </div>
         </div>

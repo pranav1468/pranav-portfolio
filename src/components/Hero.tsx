@@ -19,14 +19,14 @@ const socialLinks = [
   {
     icon: Mail,
     label: "Email",
-    href: "mailto:pranav@example.com",
+    href: "mailto:pranav.baghare@email.com",
   },
 ];
 
 const exploringItems = [
-  "EfficientNetV2",
-  "Satellite time-series",
-  "Error analysis",
+  "Siamese U-Net",
+  "DenseNet121",
+  "Streamlit Deployment",
 ];
 
 const Hero = () => {

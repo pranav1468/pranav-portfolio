@@ -34,15 +34,15 @@ const About = () => {
             <div className="flex items-center gap-4 text-muted-foreground mb-12">
               <div className="flex items-center gap-2">
                 <MapPin className="w-4 h-4 text-primary" />
-                <span>Mumbai, India</span>
+                <span>Indore, India</span>
               </div>
               <span className="text-border">•</span>
               <a 
-                href="mailto:pranav@example.com" 
+                href="mailto:pranav.baghare@email.com" 
                 className="flex items-center gap-2 hover:text-primary transition-colors"
               >
                 <Mail className="w-4 h-4" />
-                <span>pranav@example.com</span>
+                <span>pranav.baghare@email.com</span>
               </a>
             </div>
 
@@ -78,19 +78,19 @@ const About = () => {
               
               <div className="space-y-6">
                 <div className="p-6 rounded-xl border border-border/50 bg-card/30 hover:border-primary/30 hover-glow-primary transition-all duration-200">
-                  <h3 className="font-semibold text-lg mb-1">PGDAI - Post Graduate Diploma in Artificial Intelligence</h3>
-                  <p className="text-primary text-sm mb-2">CDAC (Centre for Development of Advanced Computing)</p>
-                  <p className="text-muted-foreground text-sm">2023 - 2024</p>
+                  <h3 className="font-semibold text-lg mb-1">PG Diploma in Artificial Intelligence (PG-DAI)</h3>
+                  <p className="text-primary text-sm mb-2">Centre for Development of Advanced Computing (CDAC), Noida, Uttar Pradesh</p>
+                  <p className="text-muted-foreground text-sm">August 2025 – February 2026</p>
                   <p className="text-muted-foreground mt-3 text-sm leading-relaxed">
                     Specialized in machine learning, deep learning, and computer vision. Completed multiple 
-                    hands-on projects including object detection and image classification systems.
+                    hands-on projects including object detection, image segmentation, and classification systems.
                   </p>
                 </div>
                 
                 <div className="p-6 rounded-xl border border-border/50 bg-card/30 hover:border-primary/30 hover-glow-primary transition-all duration-200">
-                  <h3 className="font-semibold text-lg mb-1">Bachelor of Engineering - Computer Science</h3>
-                  <p className="text-primary text-sm mb-2">University of Mumbai</p>
-                  <p className="text-muted-foreground text-sm">2019 - 2023</p>
+                  <h3 className="font-semibold text-lg mb-1">Bachelor of Technology in Computer Science</h3>
+                  <p className="text-primary text-sm mb-2">Shri Vaishnav Vidyapeeth Vishwavidyalaya (SVVV), Indore, Madhya Pradesh</p>
+                  <p className="text-muted-foreground text-sm">October 2020 – October 2024</p>
                   <p className="text-muted-foreground mt-3 text-sm leading-relaxed">
                     Strong foundation in algorithms, data structures, and software engineering principles.
                   </p>
