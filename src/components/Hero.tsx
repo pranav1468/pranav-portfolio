@@ -9,12 +9,12 @@ const socialLinks = [
   {
     icon: Github,
     label: "GitHub",
-    href: "https://github.com/pranavbaghare",
+    href: "https://github.com/pranav1468",
   },
   {
     icon: Linkedin,
     label: "LinkedIn",
-    href: "https://linkedin.com/in/pranavbaghare",
+    href: "https://www.linkedin.com/in/pranav-baghare",
   },
   {
     icon: Mail,

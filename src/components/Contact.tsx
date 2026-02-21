@@ -13,15 +13,15 @@ const contactItems = [
   {
     icon: Linkedin,
     label: "LinkedIn",
-    value: "linkedin.com/in/pranavbaghare",
-    href: "https://linkedin.com/in/pranavbaghare",
+    value: "linkedin.com/in/pranav-baghare",
+    href: "https://www.linkedin.com/in/pranav-baghare",
     color: "secondary",
   },
   {
     icon: Github,
     label: "GitHub",
-    value: "github.com/pranavbaghare",
-    href: "https://github.com/pranavbaghare",
+    value: "github.com/pranav1468",
+    href: "https://github.com/pranav1468",
     color: "accent",
   },
 ];
