@@ -2,7 +2,7 @@ import { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import { Button } from "@/components/ui/button";
 import { ArrowDown, FileText, MapPin, Github, Linkedin, Mail, Sparkles } from "lucide-react";
-import profilePhoto from "@/assets/profile-photo.png";
+
 
 const dynamicTexts = ["Machine Learning", "Deep Learning", "Computer Vision", "NLP"];
 
@@ -64,17 +64,14 @@ const Hero = () => {
         <div className="max-w-6xl mx-auto w-full">
           
           {/* TWO-COLUMN LAYOUT: Text left, Photo right */}
-          <div className={`grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-16 items-center mb-16 transition-all duration-1000 ${isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-10"}`}>
-            
-            {/* LEFT COLUMN: Text content */}
-            <div className="text-center lg:text-left order-2 lg:order-1">
+          <div className={`text-center mb-16 transition-all duration-1000 ${isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-10"}`}>
               {/* Name - Largest text */}
               <h1 className="text-5xl md:text-6xl lg:text-7xl font-bold mb-6 tracking-tight">
                 <span className="text-gradient">Pranav Baghare</span>
               </h1>
 
               {/* Role / Focus text */}
-              <div className="flex items-center justify-center lg:justify-start gap-3 mb-6">
+              <div className="flex items-center justify-center gap-3 mb-6">
                 <span className="px-4 py-2 text-sm font-medium rounded-full border border-primary/30 bg-primary/10 text-primary">
                   AI/ML Engineer
                 </span>
@@ -87,20 +84,20 @@ const Hero = () => {
               </div>
 
               {/* Description paragraph */}
-              <p className="text-lg md:text-xl text-muted-foreground mb-8 leading-relaxed max-w-xl mx-auto lg:mx-0">
+              <p className="text-lg md:text-xl text-muted-foreground mb-8 leading-relaxed max-w-xl mx-auto">
                 Building intelligent systems through fundamentals-first learning, rigorous experimentation, and real-world problem solving.
               </p>
 
               {/* META ROW: Location + Availability */}
-              <div className="flex items-center justify-center lg:justify-start gap-2 text-muted-foreground text-sm mb-8">
+              <div className="flex items-center justify-center gap-2 text-muted-foreground text-sm mb-8">
                 <MapPin className="w-4 h-4" />
-                <span>India</span>
+                <span>Noida, India</span>
                 <span className="mx-2 text-border">•</span>
                 <span className="text-primary/80">Open to AI/ML internships & entry-level roles</span>
               </div>
 
               {/* PRIMARY CTAs */}
-              <div className="flex flex-wrap items-center justify-center lg:justify-start gap-4">
+              <div className="flex flex-wrap items-center justify-center gap-4">
                 <Button 
                   onClick={handleViewProjects}
                   className="bg-primary text-primary-foreground hover:bg-primary/90 px-6 py-5 text-base hover-glow-primary hover:-translate-y-0.5 transition-all duration-200"
@@ -119,22 +116,6 @@ const Hero = () => {
                   </a>
                 </Button>
               </div>
-            </div>
-
-            {/* RIGHT COLUMN: Profile Photo */}
-            <div className="flex justify-center lg:justify-end order-1 lg:order-2">
-              <div className="relative">
-                <div className="w-64 h-64 md:w-72 md:h-72 lg:w-80 lg:h-80 rounded-2xl overflow-hidden border-2 border-border/50 bg-card/50 shadow-xl">
-                  <img
-                    src={profilePhoto}
-                    alt="Pranav Baghare"
-                    className="w-full h-full object-cover"
-                  />
-                </div>
-                {/* Subtle glow effect behind photo */}
-                <div className="absolute inset-0 -z-10 bg-gradient-to-br from-primary/20 to-accent/20 blur-3xl opacity-50 rounded-2xl" />
-              </div>
-            </div>
           </div>
 
           {/* SOCIAL LINKS SECTION */}
