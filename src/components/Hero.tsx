@@ -2,6 +2,7 @@ import { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import { Button } from "@/components/ui/button";
 import { ArrowDown, FileText, MapPin, Github, Linkedin, Mail, Sparkles } from "lucide-react";
+import profilePhoto from "@/assets/profile-photo.png";
 
 const dynamicTexts = ["Machine Learning", "Deep Learning", "Computer Vision", "NLP"];
 
@@ -125,7 +126,7 @@ const Hero = () => {
               <div className="relative">
                 <div className="w-64 h-64 md:w-72 md:h-72 lg:w-80 lg:h-80 rounded-2xl overflow-hidden border-2 border-border/50 bg-card/50 shadow-xl">
                   <img
-                    src="/placeholder.svg"
+                    src={profilePhoto}
                     alt="Pranav Baghare"
                     className="w-full h-full object-cover"
                   />
