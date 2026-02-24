@@ -12,13 +12,29 @@ const skillCategories = [
     ],
   },
   {
-    title: "ML / DL Libraries",
+    title: "ML / DL Frameworks & Libraries",
     icon: Brain,
     color: "secondary",
     skills: [
       { name: "TensorFlow", usage: "Building and training neural networks" },
       { name: "Keras", usage: "High-level deep learning API" },
       { name: "Scikit-Learn", usage: "Classical ML algorithms and pipelines" },
+    ],
+  },
+  {
+    title: "Machine Learning Concepts",
+    icon: Brain,
+    color: "primary",
+    skills: [
+      { name: "Supervised Learning", usage: "Classification and regression tasks" },
+      { name: "Unsupervised Learning", usage: "Clustering and dimensionality reduction" },
+      { name: "DNN", usage: "Deep neural network architectures" },
+      { name: "CNN", usage: "Convolutional networks for image tasks" },
+      { name: "RNN", usage: "Recurrent networks for sequential data" },
+      { name: "LSTM", usage: "Long short-term memory networks" },
+      { name: "Transformer", usage: "Attention-based sequence modeling" },
+      { name: "GANs", usage: "Generative adversarial networks" },
+      { name: "NLP", usage: "Natural language processing techniques" },
     ],
   },
   {
@@ -46,6 +62,14 @@ const skillCategories = [
     ],
   },
   {
+    title: "Big Data & Data Engineering",
+    icon: Wrench,
+    color: "accent",
+    skills: [
+      { name: "PySpark", usage: "Distributed big data processing" },
+    ],
+  },
+  {
     title: "Dev Tools",
     icon: MessageSquare,
     color: "secondary",
@@ -54,7 +78,6 @@ const skillCategories = [
       { name: "VS Code", usage: "Primary code editor" },
       { name: "Kaggle", usage: "Competitions and datasets" },
       { name: "Colab", usage: "Cloud-based notebooks with GPU" },
-      { name: "PySpark", usage: "Big data processing (basic)" },
     ],
   },
 ];
